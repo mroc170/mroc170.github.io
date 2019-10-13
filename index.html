@@ -13118,11 +13118,156 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3>Mason Riley O'Connor</h3>
 <h3>CMPS3660 Tutorial Milestone 1</h3><p><a href="https://www.kaggle.com/cjgdev/formula-1-race-data-19502017#races.csv"> This data set</a> from <a href="kaggle.com">kaggle.com</a> is a set of csv files with Formula 1 race data from the past 70 years. Although it does not include the two most recent seasons, it is very thorough and has very few missing values. All tables have appropriate primary keys as well as foreign keys. In addition to the data set being large, thorough, and in an accessible format, I am also very interested in the subject matter and will be very engaged with the research and data. Formula 1 is known as a marvel of engineering and data optimization. Much of the data used by teams is kept private but these publicly known results are important nonetheless. This data set will allow me to analyze many relationships and make assertions about a subject matter I am familiar with.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">drivers_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/drivers.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">)</span>
+<span class="n">drivers_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[47]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>driverId</th>
+      <th>driverRef</th>
+      <th>number</th>
+      <th>code</th>
+      <th>forename</th>
+      <th>surname</th>
+      <th>dob</th>
+      <th>nationality</th>
+      <th>url</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>hamilton</td>
+      <td>44.0</td>
+      <td>HAM</td>
+      <td>Lewis</td>
+      <td>Hamilton</td>
+      <td>07/01/1985</td>
+      <td>British</td>
+      <td>http://en.wikipedia.org/wiki/Lewis_Hamilton</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>heidfeld</td>
+      <td>NaN</td>
+      <td>HEI</td>
+      <td>Nick</td>
+      <td>Heidfeld</td>
+      <td>10/05/1977</td>
+      <td>German</td>
+      <td>http://en.wikipedia.org/wiki/Nick_Heidfeld</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>rosberg</td>
+      <td>6.0</td>
+      <td>ROS</td>
+      <td>Nico</td>
+      <td>Rosberg</td>
+      <td>27/06/1985</td>
+      <td>German</td>
+      <td>http://en.wikipedia.org/wiki/Nico_Rosberg</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>alonso</td>
+      <td>14.0</td>
+      <td>ALO</td>
+      <td>Fernando</td>
+      <td>Alonso</td>
+      <td>29/07/1981</td>
+      <td>Spanish</td>
+      <td>http://en.wikipedia.org/wiki/Fernando_Alonso</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>kovalainen</td>
+      <td>NaN</td>
+      <td>KOV</td>
+      <td>Heikki</td>
+      <td>Kovalainen</td>
+      <td>19/10/1981</td>
+      <td>Finnish</td>
+      <td>http://en.wikipedia.org/wiki/Heikki_Kovalainen</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>I am particularly interested in analyzing the relationships that influence driver success in relation to their team situation and the situations of individual races. For teams, I am interested to see if there is a correlation between driver nationality and team nationality as well as the age of a team versus driver experience. For individual races there are many specific statistics that are not often brought up, and commentators and analysts tend to focus on the top drivers without talking about all of the racers. I'd like to analyze how drivers perform at tracks in their country as well as the country of their team and look at more specific stats like time of race, time zone of the track, and track characteristics to speculate how drivers may perform at new tracks added to the race calendar since 3 new tracks are being added in 2020 alone.</p>
 <p>The scoring system for Formula 1 has been changed multiple times in the 90's alone which has influenced certain statistics on face Value. Titles like most points of all time and most points per race are both attributed to Lewis Hamilton despite more race wins by Michael Schumacher. A quick look at the top 10 drivers in this category reveal that this list is determined primarily by the era in which a driver competes. While the data set already has points awarded in the race statistics, I would like to look at these performances from different eras more objectively by categorizing them all with each of the points systems and seeing if any championship results change specifically and see if this data supports one points system over another. These files also contain information about mechanical failures and crashes in races that can be accounted for to adjust the real-world statistics with these DNFs that are not the fault of the driver to show a more accurate representation of driver talent.</p>
 <p>This data set is very convenient, and I have found others to reference for additional data, although they may require more formatting to use effectively. There are many valuable questions that this data may help to answer, such as the relative efficacy of different points systems, whether or not car performance is overshadowing driver performance, and what tracks make for unpredictable race results.</p>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
